@@ -8,15 +8,19 @@ namespace FactoryPatternExercise2
 {
     public class ListDataAccess : IDataAccess
     {
-        public List<Product> LoadData()
+        public void LoadData(List<Product> list)
         {
             Console.WriteLine("I am reading data from a list.");
-            return new List<Product>();
+            foreach(var item in list)
+            {
+                Console.WriteLine($"{item.Name} costs {item.Price}");
+            }            
         }
 
-        public void SaveData()
+        public List<Product> SaveData()
         {
             Console.WriteLine("I am saving data to a list.");
+            return new List<Product>();
         }
     }
 }

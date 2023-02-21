@@ -8,8 +8,8 @@ namespace FactoryPatternExercise2
 {
     public interface IDataAccess
     {
-        public void SaveData(); 
-        public List<Product> LoadData();
+        public List<Product> SaveData(); 
+        public void LoadData(List<Product> list);
       
     }
 }

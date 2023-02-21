@@ -9,21 +9,21 @@ namespace FactoryPatternExercise2
         static void Main(string[] args)
         {
             Console.WriteLine("What database would you like to use? A list, SQL, or Mongo?");
-            var userResponse = Console.ReadLine();
-            IDataAccess accessType = DataAccessFactory.GetDataAccessType(userResponse);
-            
-                accessType.SaveData();
-                var  productList = accessType.LoadData();
-            
+            var userResponse = Console.ReadLine();            
             Product soap = new Product() { Name = "Dawn", Price = 1.55 };
             Product medicine = new Product() { Name = "Tylenol", Price = 2.99 };
-            productList.Add(soap);
-            productList.Add(medicine);
-            foreach(var item in productList) 
+           
+            IDataAccess accessType = DataAccessFactory.GetDataAccessType(userResponse);
+            if (accessType != null)
             {
-                Console.WriteLine($"{item.Name} is ${item.Price}");
-            }
+                var productList = accessType.SaveData();
+                productList.Add(soap);
+                productList.Add(medicine);
+                accessType.LoadData(productList);
 
+            }          
+                      
+            
         }
     }
 }
